@@ -1,0 +1,6 @@
+@TheGameOfLife.Server_HostAddress = http://localhost:5096
+
+GET {{TheGameOfLife.Server_HostAddress}}/Life
+Accept: application/json
+
+###

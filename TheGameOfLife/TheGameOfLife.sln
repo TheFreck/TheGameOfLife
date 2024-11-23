@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35506.116 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheGameOfLife.Server", "TheGameOfLife.Server\TheGameOfLife.Server.csproj", "{24133F67-5FFC-45A4-BCE2-5282153BDD6C}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "thegameoflife.client", "thegameoflife.client\thegameoflife.client.esproj", "{1617B2E6-9B78-4A1A-B2C5-E2FB8B2F159B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheGameOfLife.Specs", "TheGameOfLife.Specs\TheGameOfLife.Specs.csproj", "{B228337C-979D-423B-B8F0-FF57D9A146AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24133F67-5FFC-45A4-BCE2-5282153BDD6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24133F67-5FFC-45A4-BCE2-5282153BDD6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24133F67-5FFC-45A4-BCE2-5282153BDD6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24133F67-5FFC-45A4-BCE2-5282153BDD6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1617B2E6-9B78-4A1A-B2C5-E2FB8B2F159B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1617B2E6-9B78-4A1A-B2C5-E2FB8B2F159B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1617B2E6-9B78-4A1A-B2C5-E2FB8B2F159B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1617B2E6-9B78-4A1A-B2C5-E2FB8B2F159B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1617B2E6-9B78-4A1A-B2C5-E2FB8B2F159B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1617B2E6-9B78-4A1A-B2C5-E2FB8B2F159B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B228337C-979D-423B-B8F0-FF57D9A146AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B228337C-979D-423B-B8F0-FF57D9A146AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B228337C-979D-423B-B8F0-FF57D9A146AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B228337C-979D-423B-B8F0-FF57D9A146AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

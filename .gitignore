@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TheGameOfLife/.vs
+/TheGameOfLife/thegameoflife.client/obj/Debug
+/TheGameOfLife/TheGameOfLife.Server/bin/Debug/net8.0
+/TheGameOfLife/TheGameOfLife.Server/obj
+/TheGameOfLife/TheGameOfLife.Specs/bin/Debug/net8.0
+/TheGameOfLife/TheGameOfLife.Specs/obj
