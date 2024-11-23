@@ -17,16 +17,16 @@ namespace TheGameOfLife.Server.Controllers
             this.lifeService = lifeService;
         }
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok("you made it here!");
-        }
-
         [HttpPost]
         public IActionResult NextGen(bool[][] lifeMap) 
         {
             return Ok(lifeService.Proceed(lifeMap));
+        }
+
+        [HttpPost("{gens}")]
+        public IActionResult NextSeveralGenerations(bool[][] lifeMap, int gens) 
+        {
+            return Ok(lifeService.ProceedMany(lifeMap, gens));
         }
     }
 }
