@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:56468",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\Users\\wpica\\source\\repos\\TheGameOfLife\\TheGameOfLife\\TheGameOfLife.Server\\..\\thegameoflife.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

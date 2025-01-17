@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using TheGameOfLife.Server.Services;
 
 namespace TheGameOfLife.Server.Controllers
@@ -24,9 +25,14 @@ namespace TheGameOfLife.Server.Controllers
         }
 
         [HttpPost("{gens}")]
-        public IActionResult NextSeveralGenerations(bool[][] lifeMap, int gens) 
+        public IActionResult NextSeveralGenerations([FromBody]bool[][] lifeMap, int gens) 
         {
-            return Ok(lifeService.ProceedMany(lifeMap, gens));
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            var generations = lifeService.ProceedMany(lifeMap, gens);
+            stopwatch.Stop();
+            Console.WriteLine("elapsed: " + stopwatch.ElapsedMilliseconds);
+            return Ok(generations);
         }
     }
 }

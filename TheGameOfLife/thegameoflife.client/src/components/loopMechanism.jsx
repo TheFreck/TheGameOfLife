@@ -1,68 +1,54 @@
 import react, { useCallback, useContext, useEffect, useRef, useState } from "react";
-import LoopContext from "../contexts/loopContext";
-import loopHelpers from "../logic/loopHelpers";
-import LoopBody from "./loopBody";
-import LifeContainer from "./lifeContainer";
+import {calculateFrame,calculateMultipleFrames} from "../logic/loopHelpers";
+import Cell from "./Cell";
 
-export const LoopMechanism = ({ isRunning, loopContainerId }) => {
-    const { loopRef,setFrame } = useContext(LoopContext);
-    const [mechanismId,setMechanismId] = useState(0);
+export const LoopMechanism = ({ loopRef,data }) => {
+    const [frame,setFrame] = useState(0);
+    const [genCount,setGenCount] = useState(50);
+    const [frameInterval,setFrameInterval] = useState(250);
 
     useEffect(() => {
-        if(loopRef === undefined || loopContainerId === undefined || loopContainerId === 0) return;
-        setMechanismId(loopContainerId);
-        
-            if (isRunning) {
-                loopRef.current.intId = setInterval(march, 100, fr => {
-                    setComplete(true, () => {
-                        return;
-                    });
+        if(loopRef?.current?.loopId !== 0 && loopRef?.current?.loopFrame !== undefined){
+            loopRef.current.data = data;
+            setFrame(loopRef.current.loopFrame);
+            if(loopRef?.current?.isRunning){
+                loopRef.current.intId = setInterval(march,frameInterval,cb => {
+                    loopRef.current.loopFrame = cb.frame;
+                    loopRef.current.data.grid = cb.grid;
+                    loopRef.current.isComplete = cb.continue;
+                    setFrame(cb.frame);
+                    if(!cb.continue) clearInterval(loopRef?.current?.intId);
                 });
             }
-            else {
-                clearInterval(loopRef.current.intId);
-            }
-        return () => {
-            clearInterval(loopRef?.current?.intId);
         }
+
+        return () => clearInterval(loopRef?.current?.intId);
     }, []);
 
-    const updateFrame = async (val,cb) => {
-        loopRef.current.loopFrame = val;
-        setFrame(val);
-        await cb(val);
-    }
-
-    const updateGrid = async (val,cb) => {
-        loopRef.current.grid = val;
-        await cb(loopRef.current.grid);
-    }
-
-    const setComplete = (val,cb) => {
-        loopRef.current.loopComplete = val;
-        cb();
-    }
-
     const march = async (cb) => {
-        if (loopRef && loopRef.current && loopRef.current.loopComplete !== undefined) {
-            await setComplete(false, async val => {
-                await loopHelpers.calculateFrame(loopRef.current.loopFrame,loopRef.current.grid, num => {
-                    updateFrame(num.frame,fr => {
-                        updateGrid(num.grid,gen => {
-                            cb(gen);
-                        })
-                    });
-                })
-            });
-        }
-        else {
-            // wait 
+        if(loopRef && loopRef.current && loopRef.current.intId !== 0 && loopRef.current.isComplete){
+            loopRef.current.isComplete = false;
+            loopRef.current.data = data;
+            calculateMultipleFrames(loopRef,genCount,loop => {
+                if(loopRef.current.isRunning) loop.continue = true;
+                cb(loop);
+            })
         }
     }
 
+    const LoopBodyCallback = useCallback(() => loopRef.current.data.grid.map((rows, i) => (
+        <div key={i} style={{ display: "flex" }}>
+            {
+                // console.log(`row[${i}]`, rows)
+            }
+            {
+                rows.map((col, j) => (
+                    <Cell key={j} x={j} y={i} loopRef={loopRef} col={col}/>
+                ))
+            }
+        </div>)),[frame]);
 
-
-    return mechanismId !== 0 && <LifeContainer mechanismId={mechanismId} />
+    return <LoopBodyCallback />
 }
 
 export default LoopMechanism;

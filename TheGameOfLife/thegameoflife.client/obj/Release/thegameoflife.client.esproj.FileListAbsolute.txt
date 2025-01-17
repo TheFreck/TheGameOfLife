@@ -1,0 +1,1 @@
+C:\Users\wpica\source\repos\TheGameOfLife\TheGameOfLife\thegameoflife.client\obj\Release\thegameoflife.client.esproj.CoreCompileInputs.cache

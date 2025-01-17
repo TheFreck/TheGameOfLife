@@ -1,5 +1,5 @@
 import react, { useEffect, useState } from "react";
-import Grid from "./grid";
+import LifeGrid from "./LifeGrid";
 
 export const LifeContainer = ({mechanismId}) => {
     const [lifeContainerId, setLifeContainerId] = useState(0);
@@ -12,7 +12,7 @@ export const LifeContainer = ({mechanismId}) => {
     },[]);
 
     return <div>
-        {lifeContainerId !== undefined && lifeContainerId !== 0 && <Grid lifeContainerId={lifeContainerId} />}
+        {lifeContainerId !== undefined && lifeContainerId !== 0 && <lifeGrid lifeContainerId={lifeContainerId} />}
     </div>
 }
 

@@ -1,19 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
-import Cell from './components/cell';
-import Grid from './components/grid';
-import LifeContainer from './components/lifeContainer';
 import LoopContainer from './components/loopContainer';
-import axios from "axios";
 
 function App() {
     const [appId,setAppId] = useState(0);
 
     useEffect(() => {
-        setAppId(Math.floor(Math.random()*111));
+        if(appId === 0){
+            init(id => {
+                setAppId(id);
+            })
+        }
+        else return () => console.log("app not ready");
     },[]);
 
-    return appId !== undefined && appId !== 0 && <LoopContainer appId={appId} />
+    const init = (cb) => {
+        let id = Math.floor(Math.random()*111);
+        cb(id);
+    }
+
+    const LoopContainerCallback = useCallback(() => appId !== undefined && appId !== 0 && <LoopContainer appId={appId} />,[appId]);
+
+    return <LoopContainerCallback />
 }
 
 export default App;
